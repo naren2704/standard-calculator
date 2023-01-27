@@ -26,7 +26,7 @@ Publish the website in the given URL.
 
 ## PROGRAM :
 
-<div class="calculator">
+    <div class="calculator">
         <input type="text" name="screen" id="screen">
         <table>
             <tr>
