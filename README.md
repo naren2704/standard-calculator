@@ -1,141 +1,99 @@
-Design of a Standard Calculator
-AIM:
+## Design of a Standard Calculator
+
+## AIM:
 To design a web application for a standard calculator.
 
-DESIGN STEPS:
-Step 1:
+
+## DESIGN STEPS:
+
+## Step 1:
 Create a new Django project using "django-admin startproject",get into the project terminal and use "python3 manage.py startapp" command.
 
-Step 2:
+## Step 2:
 Define urls.py and views.py for the website .Allow host access and add the app name under installed
 
-Step 3:
+## Step 3:
 Create a templates folder under the app folder followed by a folder under templates with the app name followed by html file named calculator.html
 
-Step 4:
+## Step 4:
 Write HTML and CSS code in the file save it and run the app using python manage.py makemigrations and python manage.py migrate commands .Run the Server using "python3 manage.py runserver 0:80" command.
 
-Step 5:
+## Step 5:
 Validate the HTML and CSS code.
 
-Step 6:
+## Step 6:
 Publish the website in the given URL.
 
-PROGRAM :
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+## PROGRAM :
 
-<head>
-<meta charset="utf-8">
-<title>Simple Calculator using HTML, CSS and JavaScript</title>
-<style>
+<div class="calculator">
+        <input type="text" name="screen" id="screen">
+        <table>
+            <tr>
+                <td><button>(</button></td>
+                <td><button>)</button></td>
+                <td><button>C</button></td>
+                <td><button>%</button></td>
+            </tr>
+            <tr>
+                <td><button>7</button></td>
+                <td><button>8</button></td>
+                <td><button>9</button></td>
+                <td><button>X</button></td>
+            </tr>
+            <tr>
+                <td><button>4</button></td>
+                <td><button>5</button></td>
+                <td><button>6</button></td>
+                <td><button>-</button></td>
+            </tr>
+            <tr>
+                <td><button>1</button></td>
+                <td><button>2</button></td>
+                <td><button>3</button></td>
+                <td><button>+</button></td>
+            </tr>
+            <tr>
+                <td><button>0</button></td>
+                <td><button>.</button></td>
+                <td><button>/</button></td>
+                <td><button>=</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="/static/JS/index.js"></script>
+index.js
 
-    .calculator {
-    padding: 10px;
-    border-radius: 1em;
-    height: 480px;
-    width: 500px;
-    margin: auto;
-    background-color: #191b28;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-    }
-    
-    .display-box {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #dcdbe1;
-    border: solid black 0.5px;
-    color: black;
-    border-radius: 5px;
-    width: 100%;
-    height: 65%;
-    }
-    
-    #btn {
-    background-color: #fb0066;
-    }
-    
-    input[type=button] {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #64278f;
-    color: white;
-    border: solid black 0.5px;
-    width: 100%;
-    border-radius: 5px;
-    height: 70%;
-    outline: none;
-    }
-    
-    input:active[type=button] {
-    background: #e5e5e5;
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
-    box-shadow: inset 0px 0px 5px #c1c1c1;
-    }
-</style>
-</head>
+let screen = document.getElementById('screen'); buttons = document.querySelectorAll('button'); let screenValue = ''; for (item of buttons) { item.addEventListener('click', (e) => { buttonText = e.target.innerText; console.log('Button text is ', buttonText); if (buttonText == 'X') { buttonText = '*'; screenValue += buttonText; screen.value = screenValue; } else if (buttonText == 'C') { screenValue = ""; screen.value = screenValue; } else if (buttonText == '=') { screen.value = eval(screenValue); } else { screenValue += buttonText; screen.value = screenValue; }
 
-<body>
+})
+}
 
-<table class="calculator" >
-<tr>
-<td colspan="3"> <input class="display-box" type="text" id="result" disabled /> </td>
+style.css .container{ text-align: center; margin-top:23px }
 
-<!-- clearScreen() function clears all the values -->
-<td> <input type="button" value="C" onclick="clearScreen()" id="btn" /> </td>
-</tr>
-<tr>
-<!-- display() function displays the value of clicked button -->
-<td> <input type="button" value="1" onclick="display('1')" /> </td>
-<td> <input type="button" value="2" onclick="display('2')" /> </td>
-<td> <input type="button" value="3" onclick="display('3')" /> </td>
-<td> <input type="button" value="/" onclick="display('/')" /> </td>
-</tr>
-<tr>
-<td> <input type="button" value="4" onclick="display('4')" /> </td>
-<td> <input type="button" value="5" onclick="display('5')" /> </td>
-<td> <input type="button" value="6" onclick="display('6')" /> </td>
-<td> <input type="button" value="-" onclick="display('-')" /> </td>
-</tr>
-<tr>
-<td> <input type="button" value="7" onclick="display('7')" /> </td>
-<td> <input type="button" value="8" onclick="display('8')" /> </td>
-<td> <input type="button" value="9" onclick="display('9')" /> </td>
-<td> <input type="button" value="+" onclick="display('+')" /> </td>
-</tr>
-<tr>
-<td> <input type="button" value="." onclick="display('.')" /> </td>
-<td> <input type="button" value="0" onclick="display('0')" /> </td>
+table{ margin: auto; }
 
-<!-- calculate() function evaluates the mathematical expression -->
-<td> <input type="button" value="=" onclick="calculate()" id="btn" /> </td>
-<td> <input type="button" value="*" onclick="display('*')" /> </td>
-</tr>
-</table>
+input{ border-radius: 21px; border: 5px solid #244624; font-size:34px; height: 65px; width: 456px; }
 
-<script>
-    function clearScreen() {
-        document.getElementById("result").value = "";
-        }
+button{ border-radius: 20px; font-size: 40px; background: #978fa0; width: 102px; height: 90px; margin: 6px; }
+
+.calculator{ border: 4px solid #13695d; background-color: #ff99f7; padding: 23px; border-radius: 53px; display: inline-block;
+
+}
+
+h1{ font-size: 28px; font-family: 'Courier New', Courier, monospace; }
+
+## OUTPUT:
+![image](https://user-images.githubusercontent.com/118706984/215159217-f077a580-7a82-4243-b1b5-11339cadc8f7.png)
+
+## HTML VALIDATOR:
+![image](https://user-images.githubusercontent.com/118706984/215159403-57b1438f-781c-437e-a4b1-d5ec859bf7a3.png)
+
+## RESULT:
+The program for designing calculator using javascript is sucessfully executed.
+
+
+
+   
         
-        // This function display values
-        function display(value) {
-        document.getElementById("result").value += value;
-        }
-        
-        // This function evaluates the expression and returns result
-        function calculate() {
-        var p = document.getElementById("result").value;
-        var q = eval(p);
-        document.getElementById("result").value = q;
-        }
-</script>
-
-</body>
-
-</html>
-OUTPUT:
-![image](https://user-images.githubusercontent.com/118706984/215043329-77ab3579-acd0-43b6-92a4-7c37147cc11e.png)
-
-
-Result:
-Thus we designed a web application for a standard calculator.
